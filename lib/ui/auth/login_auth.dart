@@ -10,6 +10,17 @@ class Login_screen extends StatefulWidget {
 }
 
 class _Login_screenState extends State<Login_screen> {
+  final form_key = GlobalKey<FormState>();
+  final EmailController = TextEditingController();
+  final PasswordController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // EmailController.dispose();
+    // PasswordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +31,32 @@ class _Login_screenState extends State<Login_screen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          TEXTFORM(
-            hinttext: 'EMAIL',
-            myIcon: Icon(Icons.mail),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TEXTFORM(hinttext: 'PASSWORD', myIcon: Icon(Icons.lock)),
-          SizedBox(
-            height: 10,
-          ),
-          Rounded_button(b_name: 'LOGIN', ontap: () {}),
+          Form(
+              key: form_key,
+              child: Column(
+                children: [
+                  TEXTFORM(
+                    mycontroller: EmailController,
+                    hinttext: 'EMAIL',
+                    myIcon: Icon(Icons.mail),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TEXTFORM(
+                      mycontroller: PasswordController,
+                      hinttext: 'PASSWORD',
+                      myIcon: Icon(Icons.lock)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              )),
+          Rounded_button(
+              b_name: 'LOGIN',
+              ontap: () {
+                if (form_key.currentState!.validate()) {}
+              }),
         ]),
       ),
     );
