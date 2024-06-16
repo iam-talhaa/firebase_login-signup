@@ -1,4 +1,3 @@
-import 'package:firebase_practise/homepage.dart';
 import 'package:firebase_practise/ui/auth/login_auth.dart';
 import 'package:firebase_practise/ui/splashScreen.dart';
 import 'package:flutter/material.dart';
