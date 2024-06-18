@@ -31,6 +31,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Testing');
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
