@@ -32,7 +32,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
   @override
   Widget build(BuildContext context) {
     print('Sign UP');
-    print('sign up page ');
+    print('sign up page updated');
     print('Testing');
     return Scaffold(
       appBar: AppBar(

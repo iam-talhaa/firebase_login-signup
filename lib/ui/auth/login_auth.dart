@@ -27,11 +27,23 @@ class _Login_screenState extends State<Login_screen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(child: Text('LOGIN PAGE')),
+        title: Center(child: Text('')),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Center(
+            child: Text(
+              'Log In',
+              style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
           Form(
               key: form_key,
               child: Column(
@@ -53,6 +65,9 @@ class _Login_screenState extends State<Login_screen> {
                   ),
                 ],
               )),
+          SizedBox(
+            height: 20,
+          ),
           Rounded_button(
               b_name: 'LOGIN',
               ontap: () {
