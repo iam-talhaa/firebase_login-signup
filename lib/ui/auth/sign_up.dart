@@ -17,6 +17,7 @@ class SignUp_screen extends StatefulWidget {
 }
 
 class _SignUp_screenState extends State<SignUp_screen> {
+  bool isloading = false;
   final form_key = GlobalKey<FormState>();
   final EmailController = TextEditingController();
   final PasswordController = TextEditingController();
@@ -28,6 +29,28 @@ class _SignUp_screenState extends State<SignUp_screen> {
     super.initState();
     // EmailController.dispose();
     // PasswordController.dispose();
+  }
+
+  void login() {
+    setState(() {
+      isloading = true;
+    });
+
+    _auth
+        .createUserWithEmailAndPassword(
+            email: EmailController.text.toString(),
+            password: PasswordController.text.toString())
+        .then((value) {
+      setState(() {
+        isloading = false;
+      });
+    }).onError((error, stackTrace) {
+      setState(() {
+        isloading = false;
+      });
+
+      Utils().showToast(error.toString());
+    });
   }
 
   @override
@@ -68,15 +91,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
               b_name: 'SIGN UP',
               ontap: () {
                 if (form_key.currentState!.validate()) {
-                  _auth
-                      .createUserWithEmailAndPassword(
-                          email: EmailController.text.toString(),
-                          password: PasswordController.text.toString())
-                      .then((value) {})
-                      .onError((error, stackTrace) {
-                    Utils().showToast(error.toString());
-                  });
-
+                  login();
                   // Navigator.of(context).push(
                   //     MaterialPageRoute(builder: (context) => SignUp_screen()));
                 }

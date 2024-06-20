@@ -1,4 +1,8 @@
+import 'dart:js_interop';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_practise/ui/auth/sign_up.dart';
+import 'package:firebase_practise/utils/utils.dart';
 import 'package:firebase_practise/widgets/Rounded_button.dart';
 import 'package:firebase_practise/widgets/textFormfield.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +18,7 @@ class _Login_screenState extends State<Login_screen> {
   final form_key = GlobalKey<FormState>();
   final EmailController = TextEditingController();
   final PasswordController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
   @override
   void initState() {
     // TODO: implement initState
@@ -22,9 +27,19 @@ class _Login_screenState extends State<Login_screen> {
     // PasswordController.dispose();
   }
 
+  void Login() {
+    _auth
+        .signInWithEmailAndPassword(
+            email: EmailController.text,
+            password: PasswordController.text.toString())
+        .then((value) {})
+        .onError((error, stackTrace) {
+      Utils().showToast(error.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print('testing');
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -73,8 +88,7 @@ class _Login_screenState extends State<Login_screen> {
               b_name: 'LOGIN',
               ontap: () {
                 if (form_key.currentState!.validate()) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignUp_screen()));
+                  Login();
                 }
               }),
           Row(
