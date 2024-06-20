@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_practise/ui/auth/login_auth.dart';
+import 'package:firebase_practise/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_practise/ui/auth/sign_up.dart';
@@ -67,10 +68,15 @@ class _SignUp_screenState extends State<SignUp_screen> {
               b_name: 'SIGN UP',
               ontap: () {
                 if (form_key.currentState!.validate()) {
-                  _auth.createUserWithEmailAndPassword(
-                      email: EmailController.text.toString(),
-                      password: PasswordController.text.toString());
-                  showToast();
+                  _auth
+                      .createUserWithEmailAndPassword(
+                          email: EmailController.text.toString(),
+                          password: PasswordController.text.toString())
+                      .then((value) {})
+                      .onError((error, stackTrace) {
+                    Utils().showToast(error.toString());
+                  });
+
                   // Navigator.of(context).push(
                   //     MaterialPageRoute(builder: (context) => SignUp_screen()));
                 }
@@ -90,16 +96,5 @@ class _SignUp_screenState extends State<SignUp_screen> {
         ]),
       ),
     );
-  }
-
-  void showToast() {
-    Fluttertoast.showToast(
-        msg: "Sign Up SuccessFull",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 4,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0);
   }
 }
