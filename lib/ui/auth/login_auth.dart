@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_practise/posts/posts_screen.dart';
 import 'package:firebase_practise/ui/auth/sign_up.dart';
 import 'package:firebase_practise/utils/utils.dart';
 import 'package:firebase_practise/widgets/Rounded_button.dart';
@@ -34,6 +35,9 @@ class _Login_screenState extends State<Login_screen> {
             password: PasswordController.text.toString())
         .then((value) {
       Utils().showToast(value.user!.email.toString());
+
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => Posts()));
     }).onError((error, stackTrace) {
       Utils().showToast(error.toString());
     });
