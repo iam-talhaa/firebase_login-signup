@@ -31,7 +31,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
     // PasswordController.dispose();
   }
 
-  void login() {
+  void s_login() {
     setState(() {
       isloading = true;
     });
@@ -91,7 +91,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
               b_name: 'SIGN UP',
               ontap: () {
                 if (form_key.currentState!.validate()) {
-                  login();
+                  s_login();
                   // Navigator.of(context).push(
                   //     MaterialPageRoute(builder: (context) => SignUp_screen()));
                 }

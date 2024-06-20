@@ -32,8 +32,9 @@ class _Login_screenState extends State<Login_screen> {
         .signInWithEmailAndPassword(
             email: EmailController.text,
             password: PasswordController.text.toString())
-        .then((value) {})
-        .onError((error, stackTrace) {
+        .then((value) {
+      Utils().showToast(value.user!.email.toString());
+    }).onError((error, stackTrace) {
       Utils().showToast(error.toString());
     });
   }
