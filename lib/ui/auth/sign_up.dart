@@ -57,6 +57,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
   Widget build(BuildContext context) {
     print('Sign UP');
     print('Sign UP');
+    print('Sign UP');
 
     print('sign up page updated');
     print('Testing');
